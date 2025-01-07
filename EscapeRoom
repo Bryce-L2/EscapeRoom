@@ -1,66 +1,119 @@
 #include <iostream>
 #include <ctime>
+#include <random>
 
 using namespace std;
 
 void Intro();
 void characterChoice();
-void time();
-bool escapeRoom();
+bool timeLimit(time_t start_time);
+bool math();
+bool randNum();
 
 int main() {
     Intro();
     characterChoice();
+    
+    time_t start_time = time(0); 
 
-    if (escapeRoom()) {
-        cout << "Congratulations! You have successfully escaped the Fortnite-themed escape room!" << endl;
-    } else {
-        cout << "You failed to escape. Better luck next time!" << endl;
+    if (!math() || !timeLimit(start_time)) {
+        cout << "John Wick hit you with a Mongraal Classic and you get cooked." << endl;
+        return 0; 
+    }
+    
+    if (!randNum() || !timeLimit(start_time)) {
+        cout << "John Wick hit you with a Mongraal Classic and you get cooked." << endl;
+        return 0; 
     }
 
-    return 0;
+    vehicleq ();
+    cout << "You answered all questions in time!" << endl;
+
+    return 0; 
 }
 
 void Intro() {
     cout << "Welcome to the Fortnite Escape Room!" << endl;
     cout << "\nYou just got full boxed by a sweaty John Wick and you need to escape!" << endl;
-    
 }
 
 void characterChoice() {
     string choice;
     cout << "\nWhat character are you playing as? " << endl;
     cin >> choice;
-    cout << "\nYou are playing as " << choice;
+    cout << "\nYou are playing as " << choice << endl;
+}
+
+bool timeLimit(time_t start_time) {
+    time_t current_time = time(0);
+    if (difftime(current_time, start_time) >= 300) { 
+        cout << "John Wick hit you with a Mongraal Classic and you get cooked." << endl;
+        return false; 
+    }
+    return true; 
+}
+
+bool math() {
+    int answer;
+    cout << "\nQuestion 1: ";
+
+    do {
+        cout << "\nIf Peely has 250 wood, 293 brick, and 123 metal. How many builds can he make? " << endl;
+        cin >> answer;
+
+        if (answer == 66) {
+            cout << "\nWow u actually know math. Onto the next" << endl;
+            return true;
+        } else {
+            cout << "Erm incorrect" << endl;
+        }
+    } while (true); 
+}
+
+bool randNum() {
+    int randomNum = rand() % 101;
+    int guess;
+    cout << "\n\nQuestion 2: "; 
+
+    do {
+        cout << "\nYou need to guess how many boolets John Wick has left: ";
+        cin >> guess;
+
+        if (guess == number) {
+            cout << "Correct! You guessed the right number!" << endl;
+            return true; 
+        } else {
+            cout << "Nope, try again." << endl; 
+        }
+    } while (true); 
+}
+
+
+void vehicleq(){
+    str vehiclea;
+    cout << "What type of vehicle do you jump out of to start in 'Fortnite Battle Royale'?";
+    cout << "\nA. Car \nB. Bus \nC. RV \nD. Airplane";
+    cin >> vehiclea; 
     
 }
 
-
-
-void time() {
-    time_t start_time = time(0);
-    time_t current_time;
-
-    cout << "You have 5 minutes to escape the box and defeat john wick"<< endl;
-
-    bool timer_done = false;
-
-    while (!timer_done) {
-        current_time = time(0);  
-        
-        if (difftime(current_time, start_time) >= 310) {
-            cout << "John wick hit you with a mongraal classic and u get cooked";
-            timer_done = true;  
-        }
-    }
-
+void basketballq(){
+    int basketballa; 
+    cout << "In 'Fortnite Battle Royale', how many basketball courts are there?";
+    cout << "\nA. 6 \nB. 5 \nC. 7 \nD. 8";
+    cin >> basketballa;
 }
 
-bool escapeRoom() {
-    cout << "\nSolve the fortnite puzzles to escape." << endl;
-
-    time();
-
-    return true;
+void seasonq(){
+    str seasona; 
+    cout << "Which Fortnite season started on Sunday, the 4th of December 2022?";
+    cout << "\nA. Ch6 S1 \nB. Ch4 S1 \nC. Ch2 S1 \nD. Ch22 S1";
+    cin >> seasona;
 }
 
+void battleq(){
+    int battlea;
+    cout << "How many players battle in a normal fortnite match?";
+    cout << "\nA. 100 \nB. 25 \nC. 30 \nD. 47";
+    cin >> battlea;
+}
